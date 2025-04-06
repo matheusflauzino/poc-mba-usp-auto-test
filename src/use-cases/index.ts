@@ -8,7 +8,7 @@ export * from './api/create-account'
 export * from './api/get-account'
 export * from './api/close-account'
 export * from './api/deposit-account'
-
+export * from './api/withdraw-account'
 
 /** Messaging */
 export * from './messaging/process-simulation'
