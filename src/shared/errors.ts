@@ -34,9 +34,10 @@ export class ForbiddenAccessError extends ApplicationError {
   }
 }
 
-export class MissingParam extends BadRequestError {
-  constructor(param: string) {
-    super(`Parameter '${param}' missing`);
+export class MissingParam extends Error {
+  constructor(paramName: string) {
+    super(`Missing property ${paramName}`);
+    this.name = 'MissingParam';
   }
 }
 
@@ -83,19 +84,19 @@ export class InternalError extends ApplicationError {
   }
 }
 
-
-
-export class NotFoundError extends ApplicationError {
-  constructor(message?: string) {
+export class NotFoundError extends Error {
+  constructor(message: string) {
     super(message);
-    this.name = 'not_found';
+    this.name = 'NotFound';
   }
 }
 
+export const Errors = {
+  MissingParam,
+  NotFound: NotFoundError
+};
 
 export function getStatusCodeFromError(error: Error): number {
-
-
   if (error instanceof ForbiddenAccessError) {
     return 403;
   }
@@ -130,7 +131,6 @@ export function getStatusCodeFromError(error: Error): number {
 
   return 400;
 }
-
 
 export function formatErrorResponse(input: ApplicationError) {
   return {

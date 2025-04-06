@@ -1,3 +1,3 @@
-export interface OutputPort<outputDTO> {
-  show(result: outputDTO): void | Promise<void>;
+export interface OutputPort<T> {
+  show(result: T): T;
 }

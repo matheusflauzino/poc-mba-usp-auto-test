@@ -35,7 +35,18 @@ export default class CreateAccountInteractor extends InteractorValidatable {
       await this._gateway.saveAccount(account);
 
       this._gateway.logInfo('CreateAccount completed successfully', { outputTxt: JSON.stringify(account) });
-      return this._presenter.show({ success: true, data: { account } });
+      return this._presenter.show({
+        success: true,
+        data: {
+          account: {
+            identifier: account.identifier!,
+            name: account.name,
+            email: account.email,
+            document: account.document,
+            balance: account.balance
+          }
+        }
+      });
     } catch (err: any) {
       this._gateway.logError('CreateAccount error', {
         exception: err
