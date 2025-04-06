@@ -64,7 +64,9 @@ src/
 │   │   └── loan.controller.ts
 │   └── presenters/       # Formatadores de resposta
 │       ├── account.presenter.ts
+│       ├── close-account.presenter.ts
 │       ├── deposit-account.presenter.ts
+│       ├── get-account.presenter.ts
 │       ├── withdraw-account.presenter.ts
 │       ├── transfer-account.presenter.ts
 │       └── loan-simulation.presenter.ts
@@ -95,6 +97,12 @@ src/
 │
 └── use-cases/            # Casos de uso da aplicação
     ├── api/              # Casos de uso da API
+    │   ├── close-account/           # Encerrar conta
+    │   │   ├── close-account.dto.ts
+    │   │   ├── close-account.gateway.ts
+    │   │   ├── close-account.interactor.ts
+    │   │   └── index.ts
+    │   │
     │   ├── create-account/           # Criar conta
     │   │   ├── create-account.dto.ts
     │   │   ├── create-account.gateway.ts
@@ -105,6 +113,12 @@ src/
     │   │   ├── deposit-account.dto.ts
     │   │   ├── deposit-account.gateway.ts
     │   │   ├── deposit-account.interactor.ts
+    │   │   └── index.ts
+    │   │
+    │   ├── get-account/              # Consultar conta
+    │   │   ├── get-account.dto.ts
+    │   │   ├── get-account.gateway.ts
+    │   │   ├── get-account.interactor.ts
     │   │   └── index.ts
     │   │
     │   ├── withdraw-account/         # Saque de conta
@@ -138,7 +152,23 @@ src/
   - Nome, documento e email são obrigatórios.
   - Documento deve ser válido (CPF ou CNPJ).
 
-#### 2. Depósito em Conta (Deposit Account)
+#### 2. Consultar Conta (Get Account)
+- **Descrição**: Retorna os dados de uma conta existente.
+- **Entrada**: Identificador da conta.
+- **Saída**: Dados completos da conta.
+- **Validações**:
+  - Identificador da conta é obrigatório.
+  - Conta deve existir.
+
+#### 3. Encerrar Conta (Close Account)
+- **Descrição**: Encerra uma conta existente.
+- **Entrada**: Identificador da conta.
+- **Saída**: Confirmação do encerramento.
+- **Validações**:
+  - Identificador da conta é obrigatório.
+  - Conta deve existir.
+
+#### 4. Depósito em Conta (Deposit Account)
 - **Descrição**: Adiciona fundos a uma conta existente.
 - **Entrada**: Identificador da conta e valor a ser depositado.
 - **Saída**: Dados atualizados da conta.
@@ -147,7 +177,7 @@ src/
   - Valor deve ser positivo.
   - Conta deve existir.
 
-#### 3. Saque de Conta (Withdraw Account)
+#### 5. Saque de Conta (Withdraw Account)
 - **Descrição**: Retira fundos de uma conta existente.
 - **Entrada**: Identificador da conta e valor a ser sacado.
 - **Saída**: Dados atualizados da conta.
@@ -157,7 +187,7 @@ src/
   - Conta deve existir.
   - Saldo deve ser suficiente para o saque.
 
-#### 4. Transferência entre Contas (Transfer Account)
+#### 6. Transferência entre Contas (Transfer Account)
 - **Descrição**: Transfere fundos de uma conta para outra.
 - **Entrada**: Identificador da conta de origem, identificador da conta de destino e valor a ser transferido.
 - **Saída**: Dados atualizados das duas contas.
@@ -168,7 +198,7 @@ src/
   - Conta de origem deve ter saldo suficiente.
   - Contas de origem e destino devem ser diferentes.
 
-#### 5. Simulação de Empréstimo (Loan Simulation)
+#### 7. Simulação de Empréstimo (Loan Simulation)
 - **Descrição**: Simula um empréstimo com base no saldo da conta.
 - **Entrada**: Identificador da conta e valor desejado para o empréstimo.
 - **Saída**: Detalhes da simulação, incluindo valor aprovado, taxa de juros e parcelas.
