@@ -52,6 +52,131 @@ src/
 └── use-cases/     # Casos de uso da aplicação
 ```
 
+## Casos de Uso Implementados
+
+O projeto implementa os seguintes casos de uso, seguindo os princípios da Clean Architecture:
+
+```
+src/
+├── adapters/
+│   ├── controllers/      # Controladores HTTP
+│   │   ├── account.controller.ts
+│   │   └── loan.controller.ts
+│   └── presenters/       # Formatadores de resposta
+│       ├── account.presenter.ts
+│       ├── deposit-account.presenter.ts
+│       ├── withdraw-account.presenter.ts
+│       ├── transfer-account.presenter.ts
+│       └── loan-simulation.presenter.ts
+│
+├── entities/             # Entidades de domínio
+│   ├── account.entity.ts
+│   └── loan.entity.ts
+│
+├── infra/                # Configurações de infraestrutura
+│   ├── config/           # Configurações
+│   │   └── env.ts
+│   ├── database/         # Conexão com banco de dados
+│   │   └── connection.ts
+│   ├── repositories/     # Repositórios
+│   │   ├── account.repository.ts
+│   │   └── loan.repository.ts
+│   └── server/           # Configuração do servidor
+│       ├── app.ts
+│       └── routes/
+│           ├── account.routes.ts
+│           └── loan.routes.ts
+│
+├── shared/               # Código compartilhado
+│   ├── errors/           # Classes de erro
+│   │   └── index.ts
+│   └── utils/            # Utilitários
+│       └── logger.ts
+│
+└── use-cases/            # Casos de uso da aplicação
+    ├── api/              # Casos de uso da API
+    │   ├── create-account/           # Criar conta
+    │   │   ├── create-account.dto.ts
+    │   │   ├── create-account.gateway.ts
+    │   │   ├── create-account.interactor.ts
+    │   │   └── index.ts
+    │   │
+    │   ├── deposit-account/          # Depósito em conta
+    │   │   ├── deposit-account.dto.ts
+    │   │   ├── deposit-account.gateway.ts
+    │   │   ├── deposit-account.interactor.ts
+    │   │   └── index.ts
+    │   │
+    │   ├── withdraw-account/         # Saque de conta
+    │   │   ├── withdraw-account.dto.ts
+    │   │   ├── withdraw-account.gateway.ts
+    │   │   ├── withdraw-account.interactor.ts
+    │   │   └── index.ts
+    │   │
+    │   ├── transfer-account/         # Transferência entre contas
+    │   │   ├── transfer-account.dto.ts
+    │   │   ├── transfer-account.gateway.ts
+    │   │   ├── transfer-account.interactor.ts
+    │   │   └── index.ts
+    │   │
+    │   └── loan-simulation/          # Simulação de empréstimo
+    │       ├── loan-simulation.dto.ts
+    │       ├── loan-simulation.gateway.ts
+    │       ├── loan-simulation.interactor.ts
+    │       └── index.ts
+    │
+    └── index.ts                      # Exportações dos casos de uso
+```
+
+### Detalhamento dos Casos de Uso
+
+#### 1. Criar Conta (Create Account)
+- **Descrição**: Permite a criação de uma nova conta bancária.
+- **Entrada**: Nome do titular, documento (CPF/CNPJ), email.
+- **Saída**: Dados da conta criada, incluindo identificador único.
+- **Validações**:
+  - Nome, documento e email são obrigatórios.
+  - Documento deve ser válido (CPF ou CNPJ).
+
+#### 2. Depósito em Conta (Deposit Account)
+- **Descrição**: Adiciona fundos a uma conta existente.
+- **Entrada**: Identificador da conta e valor a ser depositado.
+- **Saída**: Dados atualizados da conta.
+- **Validações**:
+  - Identificador da conta é obrigatório.
+  - Valor deve ser positivo.
+  - Conta deve existir.
+
+#### 3. Saque de Conta (Withdraw Account)
+- **Descrição**: Retira fundos de uma conta existente.
+- **Entrada**: Identificador da conta e valor a ser sacado.
+- **Saída**: Dados atualizados da conta.
+- **Validações**:
+  - Identificador da conta é obrigatório.
+  - Valor deve ser positivo.
+  - Conta deve existir.
+  - Saldo deve ser suficiente para o saque.
+
+#### 4. Transferência entre Contas (Transfer Account)
+- **Descrição**: Transfere fundos de uma conta para outra.
+- **Entrada**: Identificador da conta de origem, identificador da conta de destino e valor a ser transferido.
+- **Saída**: Dados atualizados das duas contas.
+- **Validações**:
+  - Identificadores das contas são obrigatórios.
+  - Valor deve ser positivo.
+  - Ambas as contas devem existir.
+  - Conta de origem deve ter saldo suficiente.
+  - Contas de origem e destino devem ser diferentes.
+
+#### 5. Simulação de Empréstimo (Loan Simulation)
+- **Descrição**: Simula um empréstimo com base no saldo da conta.
+- **Entrada**: Identificador da conta e valor desejado para o empréstimo.
+- **Saída**: Detalhes da simulação, incluindo valor aprovado, taxa de juros e parcelas.
+- **Validações**:
+  - Identificador da conta é obrigatório.
+  - Valor desejado deve ser positivo.
+  - Conta deve existir.
+
 ## Como Executar
 
 1. Clone o repositório
