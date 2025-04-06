@@ -1,4 +1,3 @@
-
 export * from './output-port'
 export * from './interfaces'
 
@@ -7,6 +6,7 @@ export * from './interfaces'
 export * from './api/loan-simulation'
 export * from './api/create-account'
 export * from './api/get-account'
+export * from './api/close-account'
 
 
 
