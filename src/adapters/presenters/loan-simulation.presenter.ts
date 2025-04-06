@@ -15,7 +15,7 @@ export default class LoanSimulationPresenter implements OutputPort<LoanSimulatio
     return this._view;
   }
 
-  public show(response: LoanSimulationOutput) {
+  public show(response: LoanSimulationOutput): LoanSimulationOutput {
     if (response.success && response.data) {
       this._view = {
         statusCode: 200,
@@ -27,7 +27,7 @@ export default class LoanSimulationPresenter implements OutputPort<LoanSimulatio
           }))
         }
       };
-      return;
+      return response;
     }
 
     if (response.failure) {
@@ -36,5 +36,7 @@ export default class LoanSimulationPresenter implements OutputPort<LoanSimulatio
         body: Errors.formatErrorResponse(response.failure.data)
       };
     }
+
+    return response;
   }
 }

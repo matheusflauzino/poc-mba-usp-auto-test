@@ -1,5 +1,4 @@
-import { CloseAccountOutput } from '@useCases/api/close-account';
-import { OutputPort } from '@useCases';
+import { OutputPort, CloseAccountOutput } from '@useCases';
 
 export class CloseAccountPresenter implements OutputPort<CloseAccountOutput> {
   show(output: CloseAccountOutput): CloseAccountOutput {

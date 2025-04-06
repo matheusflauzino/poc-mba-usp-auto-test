@@ -1,4 +1,4 @@
-import { GetAccountOutput } from '@useCases/api/get-account';
+import { GetAccountOutput } from '@useCases';
 import { OutputPort } from '@useCases';
 
 export class GetAccountPresenter implements OutputPort<GetAccountOutput> {

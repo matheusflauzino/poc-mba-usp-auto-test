@@ -91,9 +91,17 @@ export class NotFoundError extends Error {
   }
 }
 
+export class InvalidParam extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'InvalidParam';
+  }
+}
+
 export const Errors = {
   MissingParam,
-  NotFound: NotFoundError
+  NotFound: NotFoundError,
+  InvalidParam
 };
 
 export function getStatusCodeFromError(error: Error): number {
