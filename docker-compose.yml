@@ -1,0 +1,76 @@
+version: '3.8'
+
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: '100k'
+    max-file: '1'
+
+networks:
+  shared-services:
+
+services:
+  credit-simulator:
+    build:
+      context: .
+    user: 1000:1000
+    environment:
+      - DEVELOPER_REGISTRATION=123
+      - NODE_TLS_REJECT_UNAUTHORIZED=0
+      - TZ=America/Fortaleza
+      - NODE_OPTIONS=--max-old-space-size=2048
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_NAME=credit_simulator
+    volumes:
+      - '.:/application'
+    logging: *default-logging
+    networks:
+      - shared-services
+    ports:
+      - "8080:80" # Mapeia porta 80 do container para a porta 8080 no host
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: credit_simulator
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 12345678
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./docker/my.cnf:/etc/mysql/conf.d/my.cnf
+    networks:
+      - shared-services
+    logging: # Disable logging for mysql
+      driver: "none"
+
+
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack
+    ports:
+      - "4566:4566" # Porta para o gateway da AWS (comunicação com serviços)
+      - "4571-4599:4571-4599" # Portas dos serviços individuais (se necessário)
+    environment:
+      - SERVICES=sqs,dynamodb # Especifica os serviços habilitados
+      - DEBUG=1 # Habilita logs de depuração
+      - DATA_DIR=/var/lib/localstack/data # Local para persistência dos dados
+      - HOSTNAME_EXTERNAL=localhost
+      - DEFAULT_REGION=us-east-1
+    volumes:
+      - "localstack-data:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock" # Necessário para emular recursos no Docker
+    networks:
+      - shared-services
+    logging: # Disable logging for mysql
+      driver: "none"
+
+volumes:
+  mysql-data:
+  localstack-data:

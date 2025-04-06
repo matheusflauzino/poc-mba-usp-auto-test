@@ -1,0 +1,21 @@
+{
+  "log": {
+    "level": "trace",
+    "stream": "app_logs"
+  },
+  "httpServer": {
+    "port": 80
+  },
+  "queues": {
+    "self": "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/dev_simulation"
+  },
+  "aws": {
+    "sqs": {
+      "endpoint": "http://localstack:4566"
+    },
+    "dynamodb": {
+      "endpoint": " http://localstack:4566"
+    }
+  },
+  "signatureKey": "2fdNrB9fD5n5MHlT5WkqrYX3pGqKEgqn"
+}

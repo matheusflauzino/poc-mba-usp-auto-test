@@ -1,0 +1,19 @@
+config:
+  target: "http://localhost:8080" # Substitua pela URL da sua API
+  phases:
+    - duration: 30 # Duração total do teste (segundos)
+      arrivalRate: 50 # Usuários simultâneos chegando por segundo
+      rampTo: 100 # Escala até 50 usuários por segundo
+  defaults:
+    headers:
+      Content-Type: "application/json" # Cabeçalho padrão
+
+scenarios:
+  - flow:
+      - post:
+          url: "/simulations/loan"
+          json:
+            simulations:
+              - principal: 10000
+                birthDate: "1990-01-01"
+                months: 12

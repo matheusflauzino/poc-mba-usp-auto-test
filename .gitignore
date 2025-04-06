@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.eslintcache
+src/infra/config/config.json
+src/infra/config/databases.json
+tests/coverage/
+tests/unit/coverage/
+tests/node_modules/
+coverage/
+tests/api/.env

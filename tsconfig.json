@@ -1,0 +1,58 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "CommonJS",
+    "types": [
+      "vitest/globals"
+    ],
+    "rootDirs": [
+      "./src",
+      "./tests"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@useCases": [
+        "src/use-cases"
+      ],
+      "@shared": [
+        "src/shared"
+      ],
+      "@entities": [
+        "src/entities"
+      ],
+      "@adapters": [
+        "src/adapters"
+      ],
+      "@adapters/*": [
+        "src/adapters/*"
+      ],
+      "@infra": [
+        "src/infra"
+      ],
+      "@builders": [
+        "src/adapters/builders"
+      ]
+    },
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": false,
+    "sourceMap": false,
+    "outDir": "dist",
+    "removeComments": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strictPropertyInitialization": false,
+    "strict": true,
+    "skipLibCheck": true,
+    "noImplicitOverride": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.json"
+  ],
+  "exclude": [
+    "node_modules/**/*"
+  ]
+}

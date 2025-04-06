@@ -1,0 +1,8 @@
+{
+  "dynamoDB": {
+    "dropTables": true,
+    "simulation": {
+      "name": "simulation"
+    }
+  }
+}

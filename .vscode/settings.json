@@ -1,0 +1,18 @@
+{
+  "files.eol": "\n",
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "javascript.format.enable": true,
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "typescript.format.enable": true,
+  "typescript.validate.enable": true,
+  "eslint.enable": true,
+  "files.exclude": {
+    ".setup": true,
+    "node_modules/**": false
+  }
+}
