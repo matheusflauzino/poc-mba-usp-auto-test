@@ -17,6 +17,7 @@ describe('CreateAccountInteractor', () => {
       await createAccountInteractor.execute(createAccountInput);
 
       expect(createAccountGateway.logInfo).toBeCalledTimes(2);
+      expect(createAccountGateway.saveAccount).toBeCalledTimes(1);
       expect(createAccountPresenter.show).toBeCalledTimes(1);
     });
 
@@ -29,6 +30,7 @@ describe('CreateAccountInteractor', () => {
       const output = await createAccountInteractor.execute(createAccountInput);
 
       expect(createAccountGateway.logInfo).toBeCalledTimes(2);
+      expect(createAccountGateway.saveAccount).toBeCalledTimes(1);
       expect(createAccountPresenter.show).toBeCalledWith(
         expect.objectContaining({
           success: true,

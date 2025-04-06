@@ -19,6 +19,7 @@ export const makeCreateAccountObjects = () => {
 interface CreateAccountGatewayTypes {
   logInfo: ReturnType<typeof vi.fn>;
   logError: ReturnType<typeof vi.fn>;
+  saveAccount: ReturnType<typeof vi.fn>;
 }
 
 interface CreateAccountPresenterTypes {
@@ -34,7 +35,8 @@ interface SutTypes {
 export const makeCreateAccountSut = (): SutTypes => {
   const createAccountGateway = {
     logInfo: vi.fn(),
-    logError: vi.fn()
+    logError: vi.fn(),
+    saveAccount: vi.fn()
   };
 
   const createAccountPresenter = {

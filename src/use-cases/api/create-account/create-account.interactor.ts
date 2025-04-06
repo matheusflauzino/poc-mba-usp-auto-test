@@ -32,6 +32,8 @@ export default class CreateAccountInteractor extends InteractorValidatable {
         balance: 0, // Saldo inicial zero
       }).value;
 
+      await this._gateway.saveAccount(account);
+
       this._gateway.logInfo('CreateAccount completed successfully', { outputTxt: JSON.stringify(account) });
       return this._presenter.show({ success: true, data: { account } });
     } catch (err: any) {
