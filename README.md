@@ -31,6 +31,22 @@ Criar um backend simplificado em TypeScript utilizando Clean Architecture, que s
   - Validar saldo suficiente na conta de origem
   - Validar existência das duas contas envolvidas na operação
 
+### 3. Simulação de Empréstimos
+- Simulação de empréstimo baseada em idade
+  - Calcular taxa de juros anual baseada na idade do solicitante
+  - Processar múltiplas simulações em lote
+  - Gerar identificador único para cada simulação
+  - Converter valores para centavos para precisão
+  - Enviar simulações pendentes para fila de processamento
+  - Validações:
+    - Lista de simulações é obrigatória e não pode estar vazia
+    - Cada simulação deve conter valor principal, data de nascimento e número de meses
+    - Taxas de juros variam conforme faixa etária:
+      - Até 25 anos: 5% ao ano
+      - 26 a 40 anos: 3% ao ano
+      - 41 a 60 anos: 2% ao ano
+      - Acima de 60 anos: 4% ao ano
+
 ## Tecnologias Utilizadas
 
 - TypeScript
